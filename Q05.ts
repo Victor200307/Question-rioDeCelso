@@ -9,30 +9,34 @@ function calcularDesconto(valor: number, institucional: boolean): number {
         desconto = 5;
     }
 
-    if (institucional) desconto += 3;
-    if (desconto > 18) desconto = 18;
+    if (institucional) {
+        desconto = desconto + 3;
+    }
+
+    if (desconto > 18) {
+        desconto = 18;
+    }
 
     return desconto;
 }
 
 function calcularValorFinal(valor: number, institucional: boolean): number {
-    const percentual = calcularDesconto(valor, institucional);
-    return valor * (1 - percentual / 100);
+    const desconto = calcularDesconto(valor, institucional);
+    return valor - (valor * desconto) / 100;
 }
 
-const testes = [
-    { valor: 100, institucional: false },
-    { valor: 100.01, institucional: false },
-    { valor: 300, institucional: false },
-    { valor: 300.01, institucional: true },
-    { valor: 600, institucional: false },
-    { valor: 600.01, institucional: true }
-];
+function testar(valor: number, institucional: boolean): void {
+    const desconto = calcularDesconto(valor, institucional);
+    const final = calcularValorFinal(valor, institucional);
+    console.log("Compra de R$", valor, "| institucional:", institucional, "| desconto:", desconto + "%", "| valor final: R$", final.toFixed(2));
+}
 
-testes.forEach(t => {
-    console.log(
-        `R$ ${t.valor.toFixed(2)} | institucional=${t.institucional} | ` +
-        `desconto=${calcularDesconto(t.valor, t.institucional)}% | ` +
-        `final=R$ ${calcularValorFinal(t.valor, t.institucional).toFixed(2)}`
-    );
-});
+testar(100, false);
+testar(100.01, false);
+testar(300, false);
+testar(300.01, false);
+testar(600, false);
+testar(600.01, false);
+testar(50, true);
+testar(200, true);
+testar(700, true);
