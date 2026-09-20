@@ -1,22 +1,20 @@
-const opcoesSimuladas = [9, 1, 2, 3];
-let indice = 0;
-let opcao: number;
+const sequencia = [5, 1, 2, 9, 3];
+let posicao = 0;
+let opcao = 0;
 
 do {
-    console.log("\n1 - Cadastrar");
-    console.log("2 - Consultar");
-    console.log("3 - Sair");
-
-    opcao = opcoesSimuladas[indice++];
-    console.log("Opção escolhida:", opcao);
+    console.log("MENU: 1 - Cadastrar | 2 - Consultar | 3 - Sair");
+    opcao = sequencia[posicao]!;
+    posicao++;
+    console.log("Opção digitada:", opcao);
 
     if (opcao === 1) {
-        console.log("Cadastro selecionado.");
+        console.log("Cadastrando...");
     } else if (opcao === 2) {
-        console.log("Consulta selecionada.");
+        console.log("Consultando...");
     } else if (opcao === 3) {
-        console.log("Saindo...");
+        console.log("Saindo do programa.");
     } else {
-        console.log("Opção inválida. O menu será repetido.");
+        console.log("Opção inválida! O menu será exibido novamente.");
     }
 } while (opcao !== 3);
